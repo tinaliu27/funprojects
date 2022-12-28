@@ -1,1 +1,1 @@
-## Hello! This is just small projects that I have included into my personal portfolio. 
+## Hello! These are some small projects that I have included into my personal portfolio. 
