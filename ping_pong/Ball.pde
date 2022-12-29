@@ -1,37 +1,34 @@
 
 class Ball {
-  float r, Xb, Yb, speedX, speedY;
+  float r, Xb, Yb, speedX, speedY, diameter;
   
   Ball(float radius) {
-    r = radius*2;
-    Xb = random(r, width-r);      
-    Yb = 30;
-    speedX = int(random(-2, 2)); 
-    speedY = int(random(-2, 2));
+    r = radius;
+    diameter = r*2;
+    Xb = width/2;      
+    Yb = width/2;
+    speedX = 0; 
+    speedY = 0;
 
   }
   void move() {
     Xb += speedX;
     Yb += speedY;
-    if (Xb > width || Xb < 0)
-        speedX = -speedX;
-    if(Yb < 0) 
-        speedY = -speedY;
   }
   void display() {
     ellipse(Xb,Yb,r,r);
   }
   float left() {
-    return Xb-(2*r)/2;
+    return Xb-(diameter/2);
   }
   float right() { 
-    return Xb+(2*r)/2;
+    return Xb+(diameter/2);
   }
   float top() {
-    return Yb-(2*r)/2;
+    return Yb-(diameter/2);
   }
   float bottom() {
-    return Yb+(2*r)/2;
+    return Yb+(diameter/2);
   }
   
   

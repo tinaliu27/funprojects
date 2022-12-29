@@ -11,15 +11,15 @@ class Paddle{
        h = hh;
        speedY = 0;
        speedX = 0;
-       c=(255);
+       c=100;
       }
     void move() {
-      xp += speedY;
-      yp += speedX;
+      xp += speedX;
+      yp += speedY;
     }
     void display() {
-      fill(c);
-      line(xp-w/2, yp-h/2, w,h);
+      fill(200);
+      rect(xp-w/2, yp-h/2, w,h);
     }
     float left() {
         return xp-w/2;

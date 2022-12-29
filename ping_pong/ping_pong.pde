@@ -1,4 +1,4 @@
-boolean isGameOver = false; 
+float isGameOver = 0; 
 float r, Xb, Yb, speedX, speedY;
 // when true, just draw the GameOver message and stop the animation loop to end the game  
 int score = 0;
@@ -7,32 +7,59 @@ Paddle pleft, pright;
 void setup() {
   size(800, 600);
   frameRate(100);
-  ball = new Ball(15);
+  ball = new Ball(40);
+  ball.speedX=5;
+  ball.speedY= random(-3,3);
   pleft = new Paddle(15, height/2,30, 200);
   pright = new Paddle(width-15, height/2,30, 200);
-  stroke(255);
+  stroke(200);
   line(400,0,400,600);
 
 }
 
 void draw() {  
     background(0);
+    ball.move();
     ball.display();
-    if (!isGameOver) {              //play as long as it is not game over
+    if (isGameOver<3) {              //play as long as it is not game over
        //  stroke(0, 255, 0);  strokeCap(ROUND);  strokeWeight(h);
+      if(ball.right() > width || ball.left() < 0) {
+         ball.speedX = -ball.speedX;
+      }
+      if (ball.top() < 0 || ball.bottom() > height) {
+        ball.speedY = -ball.speedY;
+      }
       pleft.move();
       pleft.display();
       pright.move();
       pright.display();
-      
+      if(pleft.top() < 0) {
+          pleft.yp = pleft.h/2;
+      } 
+      if (pleft.bottom() > height) {
+          pleft.yp = height-pleft.h/2;
+      } 
+      if (pright.top() < 0) {
+          pright.yp = pright.h/2;
+      } 
+      if (pright.bottom() > height) {
+          pright.yp = height-pright.h/2;
+
+      }
       fill(255, 0, 0); textAlign(LEFT);  textSize(16);
       text("Score: " + score, 5, 15);
     if (ball.left() < pleft.right() && ball.Yb > pleft.top() && ball.Yb < pleft.bottom()) {
         ball.speedX = -ball.speedX;
+         ball.speedY = ball.Yb - pleft.yp;
+        isGameOver++;
     }
     
     if (ball.right() < pright.left() && ball.Yb > pright.top() && ball.Yb < pright.bottom()) {
         ball.speedX = -ball.speedX;
+        ball.speedY = ball.Yb - pright.yp;
+
+        isGameOver++;
+
     }
     // REQ2: Add code to check if ball lands on the paddle. Here is the pseudo-code:
     if (ball.Yb > height) {
@@ -41,7 +68,7 @@ void draw() {
       } else if (pright.xp+pright.w<pright.xp+2*pright.w) { 
          score++; 
       } else {
-      isGameOver = true;
+      isGameOver++;
         }
     }
     
