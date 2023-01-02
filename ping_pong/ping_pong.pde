@@ -6,7 +6,7 @@ int scoreleft = 0;
 Ball ball;
 Paddle pleft, pright;
 Button reset, start;
-int num = 2; 
+int num = 0; 
 void setup() {
   size(800, 600);
   frameRate(100);
@@ -135,5 +135,14 @@ void keyReleased(){
   if(key == 'z'){
     pleft.speedY=0;
   }
+}
+void mousePressed() {
+    switch(num) {
+        case 0: 
+            if (mouseX>start.X-btn_w/2 && mouseX<btn1_x+btn_w/2 && mouseY>btn1_y-btn_h/2 && mouseY<btn1_y+btn_h/2) 
+                num = 1;
+        case 1:
+        case 2:
+    }
 }
  // saveFrame("animations/####.png");
