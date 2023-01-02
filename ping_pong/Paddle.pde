@@ -1,6 +1,5 @@
 
-
-class Paddle{
+class Paddle {
     float xp, yp, w, h, speedX, speedY;     //paddle location, wdith and height 
     color c;
     
