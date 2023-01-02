@@ -6,8 +6,9 @@ In efforts to strengthen my skills in Processing I revised a pong game that I cr
 
 ![Pong Game](https://github.com/ubco-W2021T2-cosc123/lab08-tinaliu27/blob/main/task2/q2/task2moving.gif)
 
-Therefore, I wanted to add some improvements to yield the following results: 
+My intial pong is relatively boring and plain. Therefore, I wanted to add some improvements to yield the following results: 
 
 
-Hope you enjoy and have fun! 
+
+I changed the entire layout of the game and focused on making it more interactive between two different players. Now you able to play a classic pong game. Hope you enjoy and have fun! 
 
