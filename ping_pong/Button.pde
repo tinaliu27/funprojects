@@ -1,7 +1,10 @@
 class Button {
   color fill; 
   String texts;
-  Button(color filling, String text) {
+  float x, y; 
+  Button(float xb, float yb, color filling, String text) {
+      x = xb;
+      y = yb; 
       fill = filling;
       texts = text;
   }
@@ -10,11 +13,11 @@ class Button {
     strokeWeight(2);
     rectMode(CENTER);
     fill(0);
-    rect(width/2,height/2, 200,100);
+    rect(x,y, 200,100);
     textAlign(CENTER, CENTER);
-    fill(0, 408, 612, 816);
+    fill(fill);
     textSize(50);
-    text(texts, 400, 290);
+    text(texts, x, y-10);
   }
  
     
