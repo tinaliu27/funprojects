@@ -7,17 +7,18 @@ Ball ball;
 Ball[] balls;
 Paddle pleft, pright;
 Button reset, start;
+boolean pressed; 
 int num = 0; 
 void setup() {
   size(800, 600);
   frameRate(100);
   ball = new Ball(40, 255);
-  ball.speedX=random(-3,3);
-  ball.speedY= random(-3,3);
-  pleft = new Paddle(15, height/2,30, 200);
-  pright = new Paddle(width-15, height/2,30, 200);
-  start = new Button(width/2, height/2, 255, "Start");
-  reset = new Button(width/4, height/4, 0, "Reset");
+  ball.speedX=random(-4,4);
+  ball.speedY= random(-4,4);
+  pleft = new Paddle(15, height/2,30,200,255);
+  pright = new Paddle(width-15, height/2,30, 200,255);
+  start = new Button(width/3, height/3, 200,100, 255, "Start");
+  reset = new Button(width/3+15, height/4,200,100,255, "Reset");
   balls = new Ball[10];
   for (int i = 0; i < balls.length; i++) {
      balls[i] = new Ball(50,0);
@@ -25,11 +26,9 @@ void setup() {
      balls[i].speedY=random(-4,4);
   }
 
-
-
 }
 void draw() { 
- switch(num) {
+  switch(num) {
     case 0:
         scene0();
         break;
@@ -38,15 +37,16 @@ void draw() {
         break;
     case 2:
         scene2();
-        break;
+        break;   
  }
 }
 
 void scene0() {
-   background(152,190,100);
+   background(130,190,100);
    textSize(100);
    fill(0);
-   text("PONG GAME", width/2, 40);
+   pressed = false; 
+   text("PONG GAME", width/6, 100);
    for (int i = 0; i < balls.length; i++) {
       balls[i].move();
       balls[i].display();
@@ -62,10 +62,13 @@ void scene0() {
        if (balls[i].right() < 0) {
           balls[i].speedX = -balls[i].speedX;
         }
-
   }
-   start.display();
-
+    start.display();
+    if (pressed == true) {
+        num = 1; 
+    } else {
+        num = 0;
+    }
 
 }
 void scene1() {
@@ -83,8 +86,8 @@ void scene1() {
       pleft.display();
       pright.move();
       pright.display();
-      if(pleft.top() < 0) {
-          pleft.yp = pleft.h/2;
+      if(pleft.top()< 0) {
+          pleft.yp = pleft.h;
       } 
       if (pleft.bottom() > height) {
           pleft.yp = height-pleft.h/2;
@@ -96,14 +99,12 @@ void scene1() {
           pright.yp = height-pright.h/2;
       } 
       
-     if (ball.left() < pleft.right() && ball.Yb > pleft.top() && ball.Yb < pleft.bottom()) {
-        ball.speedX = -ball.speedX;
-
-    }
-    if (ball.right() > pright.left() && ball.Yb > pright.top() && ball.Yb < pright.bottom()) {
+     if (ball.left()-ball.r< pleft.right() && ball.Yb > pleft.top() && ball.Yb< pleft.bottom()) {
         ball.speedX = -ball.speedX;
     }
-   
+    if (ball.right()+ball.r> pright.left() && ball.Yb> pright.top() && ball.Yb < pright.bottom()) {
+        ball.speedX = -ball.speedX;
+    }
    if (ball.right() > width) {
      ball.Xb = width/2;
      ball.Yb = height/2;
@@ -116,17 +117,21 @@ void scene1() {
      scoreright++;
      isGameOver++;
    }
-   
     fill(255, 0, 0); textSize(16);
     text("Score: " + scoreright, 739, 15);
     fill(255, 0, 0); textAlign(LEFT);  textSize(16);
     text("Score: " + scoreleft, 5, 15);
+   
     stroke(152,190,100);
     line(400,0,400,600);
+} else {
+  num = 2; 
 }
 } void scene2() {
+  pressed = false; 
 // if game over
-   background(0);
+   if (pressed==false) {
+   background(255);
    reset.display();
    fill(255, 204,0);
    textSize(50);
@@ -135,6 +140,9 @@ void scene1() {
      text("Player Left Wins!", width/3.7, height/1.7);
    } else {
      text("Player Right Wins!", width/3.7, height/1.7);
+   }
+   } else {
+      num = 0;
    }
    
 } void keyPressed() {
@@ -168,10 +176,17 @@ void keyReleased(){
 void mousePressed() {
     switch(num) {
         case 0: 
-            num = 1;
+            if (mouseX > start.x && mouseX< (start.x+start.w) && mouseY > start.y && mouseY < (start.y+start.h))
+                  num=1;
+                  pressed = true; 
+            break;
         case 1:
+            break;
         case 2:
-            num = 0;
+            if (mouseX > reset.x && mouseX< (reset.x+reset.w) && mouseY > reset.y && mouseY < (reset.y+reset.h))
+                  num = 0;
+                  pressed = true;
+           break;
     }
 }
  // saveFrame("animations/####.png");

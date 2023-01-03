@@ -5,7 +5,7 @@ class Ball {
     r = radius;
     diameter = r*2;
     Xb = width/2;      
-    Yb = height/2;
+    Yb = width/2;
     speedX = 0; 
     speedY = 0;
     this.fill = fill;
@@ -20,15 +20,15 @@ class Ball {
     ellipse(Xb,Yb,r,r);
   }
   float left() {
-    return Xb;
+    return Xb+(r/2);
   }
   float right() { 
-    return Xb;
+    return Xb-(r/2);
   }
   float top() {
-    return Yb;
+    return Yb-(r/2);
   }
   float bottom() {
-    return Yb;
+    return Yb+(r/2);
   }  
 }

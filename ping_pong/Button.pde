@@ -1,23 +1,23 @@
 class Button {
   color fill; 
   String texts;
-  float x, y; 
-  Button(float xb, float yb, color filling, String text) {
+  float x, y, w,h;
+  Button(float xb, float yb, float w, float h, color filling, String text) {
       x = xb;
       y = yb; 
+      this.w=w;
+      this.h=h;
       fill = filling;
       texts = text;
   }
   void display() {
     stroke(255);
     strokeWeight(2);
-    rectMode(CENTER);
     fill(0);
-    rect(x,y, 200,100);
-    textAlign(CENTER, CENTER);
+    rect(x+30,y-20, 200,100);
     fill(fill);
     textSize(50);
-    text(texts, x, y-10);
+    text(texts, x+80, y+50);
   }
  
     
