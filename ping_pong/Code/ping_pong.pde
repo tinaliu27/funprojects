@@ -8,12 +8,13 @@ Ball[] balls;
 Paddle pleft, pright;
 Button reset, start;
 boolean pressed; 
+boolean refresh; 
 int num = 0; 
 void setup() {
   size(800, 600);
   frameRate(100);
   ball = new Ball(40, 255);
-  ball.speedX=random(-4,4);
+  ball.speedX=3;
   ball.speedY= random(-4,4);
   pleft = new Paddle(15, height/2,30,200,255);
   pright = new Paddle(width-15, height/2,30, 200,255);
@@ -66,6 +67,7 @@ void scene0() {
     start.display();
     if (pressed == true) {
         num = 1; 
+        refresh = true;
     } else {
         num = 0;
     }
@@ -75,10 +77,15 @@ void scene1() {
     background(0);
     ball.move();
     ball.display();
-    if (isGameOver<5) {              //play as long as it is not game over
-      if (ball.top() < 0) {
+    if(refresh == true) {
+      isGameOver=0;
+      scoreright = 0;
+      scoreleft = 0;
+    }
+      if (isGameOver<5) {              //play as long as it is not game over
+        if (ball.top() < 0) {
         ball.speedY = -ball.speedY;
-      }
+        }
       if (ball.bottom() > height) {
         ball.speedY = -ball.speedY;
       }
@@ -126,7 +133,9 @@ void scene1() {
     line(400,0,400,600);
 } else {
   num = 2; 
+  refresh = false; 
 }
+
 } void scene2() {
   pressed = false; 
 // if game over
