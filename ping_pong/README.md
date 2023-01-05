@@ -10,7 +10,7 @@ The game's functionalities were very limited. First off, the ball didn't bounce 
 
 All in all, my intial pong game is relatively boring and plain. Therefore, I wanted to add some improvements to yield the following results: 
 
-
+![Revised Pong Game](https://github.com/tinaliu27/funprojects/blob/main/ping_pong/ponggame.gif.mp4)
 
 I changed the entire layout of the game and focused on making it more interactive between two different players. Now you able to play a classic pong game. Hope you enjoy and have fun! 
 
