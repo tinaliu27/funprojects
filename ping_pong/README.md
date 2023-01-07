@@ -2,7 +2,7 @@
 
 ### First fun project made by Tina Liu! 
 
-Tools: ![Processing photo](../Processing.png)
+Tools: ![Processing photo](./images/Processing.png)
 In efforts to strengthen my skills in Processing I revised a pong game that I created for my computer creativity course at UBC (COSC123). Initially my game looked like this:
 
 ![Pong Game](https://github.com/ubco-W2021T2-cosc123/lab08-tinaliu27/blob/main/task2/q2/task2moving.gif)
