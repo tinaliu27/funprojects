@@ -1,0 +1,16 @@
+*{
+  font-family: Times New Roman;
+}
+table{
+    empty-cells: show;
+}
+.container{
+    width: 95%;
+    overflow: scroll;
+    background-color: #FFFDD0;
+    text-align: center;
+}
+.Conversion{
+    text-align: center;
+    justify-content: space-between;
+}
