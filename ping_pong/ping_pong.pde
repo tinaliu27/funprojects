@@ -40,6 +40,8 @@ void draw() {
         scene2();
         break;   
  }
+ saveFrame("animations/####.png");
+
 }
 
 void scene0() {
@@ -197,5 +199,5 @@ void mousePressed() {
                   pressed = true;
            break;
     }
+
 }
- // saveFrame("animations/####.png");
