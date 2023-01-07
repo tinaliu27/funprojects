@@ -3,32 +3,34 @@ float r, Xb, Yb, speedX, speedY;
 // when true, just draw the GameOver message and stop the animation loop to end the game  
 int scoreright = 0;
 int scoreleft = 0;
+float hit = 1;
 Ball ball;
 Ball[] balls;
-Paddle pleft, pright;
+Paddle pleft, pright,hpleft,hpright;
 Button reset, start;
 boolean pressed; 
 boolean refresh; 
 int num = 0; 
 void setup() {
-  size(800, 600);
-  frameRate(100);
-  ball = new Ball(40, 255);
-  ball.speedX=3;
+  size(900, 600);
+  ball = new Ball(width/2,height/2,40, 255);
+  ball.speedX=2.5;
   ball.speedY= random(-4,4);
   pleft = new Paddle(15, height/2,30,200,255);
   pright = new Paddle(width-15, height/2,30, 200,255);
+  hpleft = new Paddle(15, height/2,30,200,255);
+  hpright = new Paddle(width-15, height/2,30, 200,255);
   start = new Button(width/3, height/3, 200,100, 255, "Start");
   reset = new Button(width/3+15, height/4,200,100,255, "Reset");
   balls = new Ball[10];
   for (int i = 0; i < balls.length; i++) {
-     balls[i] = new Ball(50,0);
+     balls[i] = new Ball(width/2,height/3,50,0);
      balls[i].speedX=random(-4,4);
      balls[i].speedY=random(-4,4);
   }
-
 }
 void draw() { 
+  // frameRate(20);
   switch(num) {
     case 0:
         scene0();
@@ -40,7 +42,7 @@ void draw() {
         scene2();
         break;   
  }
- saveFrame("animations/####.png");
+//saveFrame("animations/####.png");
 
 }
 
@@ -67,12 +69,6 @@ void scene0() {
         }
   }
     start.display();
-    if (pressed == true) {
-        num = 1; 
-        refresh = true;
-    } else {
-        num = 0;
-    }
 
 }
 void scene1() {
@@ -84,7 +80,7 @@ void scene1() {
       scoreright = 0;
       scoreleft = 0;
     }
-      if (isGameOver<5) {              //play as long as it is not game over
+      if (scoreright<5 && scoreleft<5) {              //play as long as it is not game over
         if (ball.top() < 0) {
         ball.speedY = -ball.speedY;
         }
@@ -110,9 +106,11 @@ void scene1() {
       
      if (ball.left()-ball.r< pleft.right() && ball.Yb > pleft.top() && ball.Yb< pleft.bottom()) {
         ball.speedX = -ball.speedX;
+        hit++;
     }
     if (ball.right()+ball.r> pright.left() && ball.Yb> pright.top() && ball.Yb < pright.bottom()) {
         ball.speedX = -ball.speedX;
+        hit++;
     }
    if (ball.right() > width) {
      ball.Xb = width/2;
@@ -133,6 +131,7 @@ void scene1() {
    
     stroke(152,190,100);
     line(400,0,400,600);
+    stroke(255);
 } else {
   num = 2; 
   refresh = false; 

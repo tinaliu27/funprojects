@@ -1,11 +1,11 @@
 class Ball {
   float r, Xb, Yb, speedX, speedY, diameter,fill;
   
-  Ball(float radius, color fill) {
+  Ball(float x, float y, float radius, color fill) {
     r = radius;
     diameter = r*2;
-    Xb = width/2;      
-    Yb = width/2;
+    Xb = x;      
+    Yb = y;
     speedX = 0; 
     speedY = 0;
     this.fill = fill;
