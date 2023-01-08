@@ -11,21 +11,14 @@
         }
         input[type="text"] {
             background: #FFFDDO;
-            text-align: center;
-        }
-        function solve() {
-            
-        }
-        function addrow() {
-            
-        }
+        } 
     </style>
 <body style="background-color:burlywood">
     <div class="container">
         <h1>GPA Calculator</h1>
     </div>
     <div class="Conversion">
-    <table>
+    <table border="1", style="display: inline-block;">
     <caption>Conversion from letter grade to GPA</caption>
             <tr>
                 <th>Percentage</th>
@@ -37,14 +30,14 @@
                 <th>Percentage</th>
                 <th>UBC GPA</th>
             <tr>
-                <th>90+</th>
-                <th>4.33</th>
-                <th>80</th>
-                <th>3.70</th>
-                <th>70</th>
-                <th>2.80</th>
-                <th>60</th>
-                <th>2.00</th>
+                <td>90+</td>
+                <td>4.33</td>
+                <td>80</td>
+                <td>3.70</td>
+                <td>70</td>
+                <td>2.80</td>
+                <td>60</td>
+                <td>2.00</td>
             </tr>
             <tr>
                  <th>89</th>
@@ -148,11 +141,11 @@
             </tr>
     </table>
         </div>
-    <table border="1", style="width:100%">
+    <table id='calculator', style="float: left;", border="2">
         <tr>
-            <th column-width: 60px>Class</th>
-            <th style="width:10%">Percentage</th>
-            <th style="width:10%">Credits</th>
+            <th bgcolor = "#D2691E">Class</th>
+            <th bgcolor = "#D2691E", id="percentage">Percentage</th>
+            <th bgcolor = "#D2691E">Credits</th>
         </tr>
         <tr>
             <td><input type="text"></td>
@@ -169,12 +162,50 @@
             <td><input type="text"></td>
             <td><input type="text"></td>
         </tr>
-        <tr>
-            <td><input type="button", value="+", onclick="addrow()"><input type="button", value="-", onclick="subtractrow()"><input type="reset", onclick=reset><input type="button", value="Calculate", onclick="solve()"></td>
-            <td></td>
-            <td bgcolor="">GPA: </td>
 
+    </table>
+    <table id="GPA", border="1",style="float: right;", width=20%>
+        <tr>
+            <th bgcolor = '#6495ED'>GPA</th>
+        </tr>
+        <tr>
+            <td> Hi </td>
         </tr>
     </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button id = "addrow" onclick="addrow()">+</button>
+    <button id = "deleterow" onclick="subtractrow()">-</button>
+    <button id = "Reset" onclick="reset">Reset</button>
+    <button id = "Calculate" , onclick="calculate()">Calculate</button>
+   
+    <script>
+    function addrow() {
+       var x=document.getElementById('calculator').insertRow();
+       var y = x.insertCell(0);
+       var z = x.insertCell(1);
+       var a = x.insertCell(2);
+       const button = '<input type="text">';
+       y.innerHTML=button;
+       z.innerHTML=button;
+       a.innerHTML=button;
+    }
+    function subtractrow() {
+       var x = document.getElementById('calculator').deleteRow(-1);
+       var y = x.deleteCell(0);
+       var z = x.deleteCell(0);
+       var a = x.deleteCell(0);
+    }
+    function calculate() {
+        var percentage = document.getElementById('percentage');
+        var length = percentage.rows.length;
+        var sum = 0; 
+        for (var i = 0; i < length; i++)
+    }
+    </script>
     
+
 </body>
