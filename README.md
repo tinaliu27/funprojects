@@ -4,4 +4,4 @@
 
 [Pong Game](https://github.com/tinaliu27/funprojects/tree/main/ping_pong)
 
-[GPA Calculator]()
+[GPA Calculator](https://github.com/tinaliu27/funprojects/tree/main/GPA_Calculator)
