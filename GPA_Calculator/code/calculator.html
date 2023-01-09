@@ -141,26 +141,38 @@
             </tr>
     </table>
         </div>
+    <br>
+    <button id = "addrow" onclick="addrow()">+</button>
+    <button id = "deleterow" onclick="subtractrow()">-</button>
+    <button id = "Reset" onclick="reset">Reset</button>
+    <button id = "Calculate" , onclick="calculate()">Calculate</button>
     <table id='calculator', style="float: left;", border="2">
         <tr>
             <th bgcolor = "#D2691E">Class</th>
             <th bgcolor = "#D2691E", id="percentage">Percentage</th>
             <th bgcolor = "#D2691E">Credits</th>
+            <th bgcolor = "#D2691E" name="Count">Count</th>
         </tr>
         <tr>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
+            <td><input type="checkbox" onclick = "Select()"></td>
+
         </tr>
          <tr>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
+            <td><input type="checkbox" onclick = "Select()"></td>
+
         </tr>
         <tr>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
+            <td><input type="checkbox" onclick = "Select()"></td>
+
         </tr>
 
     </table>
@@ -172,15 +184,6 @@
             <td> Hi </td>
         </tr>
     </table>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <button id = "addrow" onclick="addrow()">+</button>
-    <button id = "deleterow" onclick="subtractrow()">-</button>
-    <button id = "Reset" onclick="reset">Reset</button>
-    <button id = "Calculate" , onclick="calculate()">Calculate</button>
    
     <script>
     function addrow() {
@@ -188,23 +191,34 @@
        var y = x.insertCell(0);
        var z = x.insertCell(1);
        var a = x.insertCell(2);
+       var b = x.insertCell(3);
        const button = '<input type="text">';
+         const check = '<input type="checkbox" onclick = "Select()">';
        y.innerHTML=button;
        z.innerHTML=button;
        a.innerHTML=button;
+       b.innerHTML=check;
     }
     function subtractrow() {
        var x = document.getElementById('calculator').deleteRow(-1);
-       var y = x.deleteCell(0);
-       var z = x.deleteCell(0);
-       var a = x.deleteCell(0);
     }
     function calculate() {
         var percentage = document.getElementById('percentage');
         var length = percentage.rows.length;
         var sum = 0; 
-        for (var i = 0; i < length; i++)
+        for (var i = 0; i < length; i++) {
+            
+        }
     }
+    function Select() {
+        var countcol = document.getElementsByName("Count");
+        var num = 0;
+        for(var i = 0; i < countcol.rows.length; i++) {
+            if (countcol[i].checked)
+                num++;
+        }
+        return num;
+;    }
     </script>
     
 
